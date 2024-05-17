@@ -15,7 +15,7 @@ public partial class Feedbackresponse
 
     public string? Response { get; set; }
 
-    public int? OptionId { get; set; }
+    public Guid? OptionId { get; set; }
 
     public string? GeneratedBy { get; set; }
 

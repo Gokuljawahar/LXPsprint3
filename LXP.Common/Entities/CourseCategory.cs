@@ -5,7 +5,7 @@ namespace LXP.Data;
 
 public partial class CourseCategory
 {
-    public Guid CategoryId { get; set; }
+    public Guid CatagoryId { get; set; }
 
     public string Category { get; set; } = null!;
 
