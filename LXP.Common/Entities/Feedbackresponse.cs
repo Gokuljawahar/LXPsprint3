@@ -30,4 +30,6 @@ public partial class Feedbackresponse
     public virtual Quizfeedbackquestion? QuizFeedbackQuestion { get; set; }
 
     public virtual Topicfeedbackquestion? TopicFeedbackQuestion { get; set; }
+
+    //Sam
 }
