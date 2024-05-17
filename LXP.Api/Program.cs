@@ -41,6 +41,9 @@ builder.Services.AddScoped<IQuizQuestionService, QuizQuestionService>();
 builder.Services.AddScoped<IQuizQuestionRepository, QuizQuestionRepository>();
 builder.Services.AddScoped<IBulkQuestionRepository, BulkQuestionRepository>();
 builder.Services.AddScoped<IBulkQuestionService, BulkQuestionService>();
+builder.Services.AddScoped<ITopicFeedbackRepository, TopicFeedbackRepository>();
+builder.Services.AddScoped<ITopicFeedbackService, TopicFeedbackService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -67,48 +70,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-//using LXP.Common;
-//using LXP.Core.IServices;
-//using LXP.Core.Services;
-//using LXP.Data.IRepository;
-//using LXP.Data.Repository;
-//using Microsoft.EntityFrameworkCore;
-//using System;
-//using LXP.Data.DBContexts;
-
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-//builder.Services.AddControllers();
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-//// Register the IQuizService and QuizService
-//builder.Services.AddScoped<IQuizService, QuizService>();
-
-//// Register the IQuizRepository and QuizRepository
-//builder.Services.AddScoped<IQuizRepository, QuizRepository>();
-//builder.Services.AddScoped<IQuizQuestionService, QuizQuestionService>();
-//builder.Services.AddScoped<IQuizQuestionRepository, QuizQuestionRepository>();
-
-
-//builder.Services.AddDbContext<LXPDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())));
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//}
-
-//app.UseHttpsRedirection();
-//app.UseAuthorization();
-//app.MapControllers();
-
-//app.Run();
-
-//builder.Services.AddMvc(options =>
-//{
-//    options.Filters.Add<ApiExceptionInterceptor>();
-//});
