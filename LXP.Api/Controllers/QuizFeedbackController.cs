@@ -18,7 +18,7 @@ namespace LXP.Api.Controllers
         }
 
         [HttpPost("AddFeedbackQuestion")]
-        public IActionResult AddFeedbackQuestion([FromBody] QuizfeedbackquestionDto quizfeedbackquestionDto)
+        public IActionResult AddFeedbackQuestion([FromBody] QuizFeedbackQuestionDto quizfeedbackquestionDto)
         {
             var result = _quizFeedbackService.AddFeedbackQuestion(quizfeedbackquestionDto, quizfeedbackquestionDto.Options);
             return Ok(result); 
@@ -41,7 +41,7 @@ namespace LXP.Api.Controllers
         }
 
         [HttpPut("UpdateFeedbackQuestion/{quizFeedbackQuestionId}")]
-        public IActionResult UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, [FromBody] QuizfeedbackquestionDto quizfeedbackquestionDto)
+        public IActionResult UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, [FromBody] QuizFeedbackQuestionDto quizfeedbackquestionDto)
         {
             var result = _quizFeedbackService.UpdateFeedbackQuestion(quizFeedbackQuestionId, quizfeedbackquestionDto, quizfeedbackquestionDto.Options);
             if (!result)

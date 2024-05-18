@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LXP.Common.DTO
 {
-    public class QuizfeedbackquestionNoDto
+    public class QuizFeedbackQuestionNoDto
     {
         public Guid QuizFeedbackQuestionId { get; set; }
 
@@ -18,7 +18,7 @@ namespace LXP.Common.DTO
 
         public string QuestionType { get; set; } = null!;
 
-        public List<FeedbackquestionsoptionDto> Options { get; set; } = new List<FeedbackquestionsoptionDto>();
+        public List<QuizFeedbackQuestionsOptionDto> Options { get; set; } = new List<QuizFeedbackQuestionsOptionDto>();
 
     }
 }

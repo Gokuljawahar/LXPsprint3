@@ -9,13 +9,13 @@ namespace LXP.Core.IServices
 {
     public interface IQuizFeedbackService
     {
-        Guid AddFeedbackQuestion(QuizfeedbackquestionDto quizfeedbackquestionDto, List<FeedbackquestionsoptionDto> options);
+        Guid AddFeedbackQuestion(QuizFeedbackQuestionDto quizfeedbackquestionDto, List<QuizFeedbackQuestionsOptionDto> options);
        
-        List<QuizfeedbackquestionNoDto> GetAllFeedbackQuestions();
+        List<QuizFeedbackQuestionNoDto> GetAllFeedbackQuestions();
 
-        QuizfeedbackquestionNoDto GetFeedbackQuestionById(Guid QuizFeedbackQuestionId);
+        QuizFeedbackQuestionNoDto GetFeedbackQuestionById(Guid QuizFeedbackQuestionId);
     
-        bool UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, QuizfeedbackquestionDto quizfeedbackquestionDto, List<FeedbackquestionsoptionDto> options);
+        bool UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, QuizFeedbackQuestionDto quizfeedbackquestionDto, List<QuizFeedbackQuestionsOptionDto> options);
     
         bool DeleteFeedbackQuestion(Guid quizFeedbackQuestionId);
     }

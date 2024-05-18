@@ -15,22 +15,22 @@ namespace LXP.Core.Services
             _quizFeedbackRepository = quizFeedbackRepository;
         }
 
-        public Guid AddFeedbackQuestion(QuizfeedbackquestionDto quizfeedbackquestionDto, List<FeedbackquestionsoptionDto> options)
+        public Guid AddFeedbackQuestion(QuizFeedbackQuestionDto quizfeedbackquestionDto, List<QuizFeedbackQuestionsOptionDto> options)
         {            
             return _quizFeedbackRepository.AddFeedbackQuestion(quizfeedbackquestionDto, options);
         }
 
-        public List<QuizfeedbackquestionNoDto> GetAllFeedbackQuestions()
+        public List<QuizFeedbackQuestionNoDto> GetAllFeedbackQuestions()
         {           
             return _quizFeedbackRepository.GetAllFeedbackQuestions();
         }
 
-        public QuizfeedbackquestionNoDto GetFeedbackQuestionById(Guid quizFeedbackQuestionId)
+        public QuizFeedbackQuestionNoDto GetFeedbackQuestionById(Guid quizFeedbackQuestionId)
         {          
             return _quizFeedbackRepository.GetFeedbackQuestionById(quizFeedbackQuestionId);
         }
 
-        public bool UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, QuizfeedbackquestionDto quizfeedbackquestionDto, List<FeedbackquestionsoptionDto> options)
+        public bool UpdateFeedbackQuestion(Guid quizFeedbackQuestionId, QuizFeedbackQuestionDto quizfeedbackquestionDto, List<QuizFeedbackQuestionsOptionDto> options)
         {        
             return _quizFeedbackRepository.UpdateFeedbackQuestion(quizFeedbackQuestionId, quizfeedbackquestionDto, options);
         }

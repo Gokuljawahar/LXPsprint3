@@ -45,7 +45,7 @@ public partial class LXPDbContext : DbContext
 
     public virtual DbSet<PasswordHistory> PasswordHistories { get; set; }
 
-    public virtual DbSet<QuestionOption> QuestionOptions { get; set; }
+    public virtual DbSet<QuestionOption> QuizFeedbackQuestionOptions { get; set; }
 
     public virtual DbSet<Quiz> Quizzes { get; set; }
 

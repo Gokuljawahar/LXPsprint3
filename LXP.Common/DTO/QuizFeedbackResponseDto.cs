@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LXP.Common.DTO
 {
-    public class FeedbackResponseDto
+    public class QuizFeedbackResponseDto
     {
 
         public Guid QuizFeedbackQuestionId { get; set; }
