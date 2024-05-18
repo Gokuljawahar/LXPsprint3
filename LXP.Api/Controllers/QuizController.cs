@@ -60,8 +60,8 @@ namespace LXP.Api.Controllers
         public ActionResult CreateQuiz([FromBody] CreateQuizDto request)
         {
             var quizId = Guid.NewGuid(); // Generate QuizId
-            //var courseId = Guid.Parse("a45c9ac3-8e24-4d98-804b-cba8ff59a140"); // Hardcoded CourseId
-           // var topicId = Guid.Parse("7ae6ad72-74ef-4e5c-b7d6-5af9dd13d721"); // Hardcoded TopicId
+            var courseId = Guid.Parse("ce753ccb-408c-4d8c-8acd-cbc8c5adcbb8"); // Hardcoded CourseId
+            var topicId = Guid.Parse("e3a895e4-1b3f-45b8-9c0a-98f9c0fa4996"); // Hardcoded TopicId
             var createdBy = "System"; // Set createdBy
             var createdAt = DateTime.UtcNow; // Set createdAt
 
@@ -84,8 +84,8 @@ namespace LXP.Api.Controllers
             var quiz = new QuizDto
             {
                 QuizId = quizId,
-               // CourseId = courseId,
-                //TopicId = topicId,
+                CourseId = courseId,
+                TopicId = topicId,
                 NameOfQuiz = request.NameOfQuiz,
                 Duration = request.Duration,
                 PassMark = request.PassMark,
