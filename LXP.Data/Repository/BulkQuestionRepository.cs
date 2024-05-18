@@ -33,7 +33,7 @@ namespace LXP.Core.Repositories
                 foreach (var option in questionOptions)
                 {
                     option.QuizQuestionId = quizQuestionId;
-                    _dbContext.QuestionOptions.Add(option);
+                    _dbContext.QuizFeedbackQuestionOptions.Add(option);
                 }
                 _dbContext.SaveChanges();
             }

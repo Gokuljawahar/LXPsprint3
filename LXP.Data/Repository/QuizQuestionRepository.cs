@@ -82,7 +82,7 @@ namespace LXP.Data.Repository
                         CreatedAt = DateTime.UtcNow
                     };
 
-                    _LXPDbContext.QuestionOptions.Add(questionOptionEntity);
+                    _LXPDbContext.QuizFeedbackQuestionOptions.Add(questionOptionEntity);
                 }
 
                 _LXPDbContext.SaveChanges();
@@ -130,10 +130,10 @@ namespace LXP.Data.Repository
                 _LXPDbContext.SaveChanges();
 
                 // Remove existing options
-                var existingOptions = _LXPDbContext.QuestionOptions
+                var existingOptions = _LXPDbContext.QuizFeedbackQuestionOptions
                     .Where(o => o.QuizQuestionId == quizQuestionId)
                     .ToList();
-                _LXPDbContext.QuestionOptions.RemoveRange(existingOptions);
+                _LXPDbContext.QuizFeedbackQuestionOptions.RemoveRange(existingOptions);
 
                 // Add new options
                 foreach (var option in options)
@@ -147,7 +147,7 @@ namespace LXP.Data.Repository
                         CreatedAt = quizQuestionEntity.CreatedAt
                     };
 
-                    _LXPDbContext.QuestionOptions.Add(questionOptionEntity);
+                    _LXPDbContext.QuizFeedbackQuestionOptions.Add(questionOptionEntity);
                 }
 
                 // Validate options based on the existing question type
@@ -178,8 +178,8 @@ namespace LXP.Data.Repository
                 if (quizQuestionEntity == null)
                     return false;
 
-                _LXPDbContext.QuestionOptions.RemoveRange(
-                    _LXPDbContext.QuestionOptions.Where(o => o.QuizQuestionId == quizQuestionId)
+                _LXPDbContext.QuizFeedbackQuestionOptions.RemoveRange(
+                    _LXPDbContext.QuizFeedbackQuestionOptions.Where(o => o.QuizQuestionId == quizQuestionId)
                 );
                 _LXPDbContext.QuizQuestions.Remove(quizQuestionEntity);
                 _LXPDbContext.SaveChanges();
@@ -223,7 +223,7 @@ namespace LXP.Data.Repository
                                 QuestionType = q.QuestionType,
                                 QuestionNo = q.QuestionNo,
 
-                                Options = _LXPDbContext.QuestionOptions
+                                Options = _LXPDbContext.QuizFeedbackQuestionOptions
                                     .Where(o => o.QuizQuestionId == q.QuizQuestionId)
                                     .Select(
                                         o =>
@@ -261,7 +261,7 @@ namespace LXP.Data.Repository
                             QuestionType = q.QuestionType,
                             QuestionNo = q.QuestionNo,
 
-                            Options = _LXPDbContext.QuestionOptions
+                            Options = _LXPDbContext.QuizFeedbackQuestionOptions
                                 .Where(o => o.QuizQuestionId == q.QuizQuestionId)
                                 .Select(o =>
                                     new QuestionOptionDto
@@ -346,7 +346,7 @@ namespace LXP.Data.Repository
                     CreatedAt = DateTime.UtcNow
                 };
 
-                _LXPDbContext.QuestionOptions.Add(questionOptionEntity);
+                _LXPDbContext.QuizFeedbackQuestionOptions.Add(questionOptionEntity);
                 _LXPDbContext.SaveChanges();
 
                 return questionOptionEntity.QuestionOptionId;
@@ -364,7 +364,7 @@ namespace LXP.Data.Repository
         {
             try
             {
-                return _LXPDbContext.QuestionOptions
+                return _LXPDbContext.QuizFeedbackQuestionOptions
                     .Where(o => o.QuizQuestionId == quizQuestionId)
                     .Select(
                         o => new QuestionOptionDto { Option = o.Option, IsCorrect = o.IsCorrect }

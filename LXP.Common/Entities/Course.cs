@@ -9,7 +9,7 @@ public partial class Course
 
     public Guid LevelId { get; set; }
 
-    public Guid CatagoryId { get; set; }
+    public Guid CategoryId { get; set; }
 
     public string Title { get; set; } = null!;
 
@@ -31,7 +31,7 @@ public partial class Course
 
     public DateTime? ModifiedAt { get; set; }
 
-    public virtual CourseCategory Catagory { get; set; } = null!;
+    public virtual CourseCategory Category { get; set; } = null!;
 
     public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
