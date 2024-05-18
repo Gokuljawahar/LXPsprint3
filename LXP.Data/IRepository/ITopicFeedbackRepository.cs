@@ -9,10 +9,12 @@ namespace LXP.Data.IRepository
 {
     public interface ITopicFeedbackRepository
     {
-        IEnumerable<FeedbackQuestionDTO> GetAllFeedbackQuestions();
-        FeedbackQuestionDTO GetFeedbackQuestionById(Guid id);
-        void AddFeedbackResponse(FeedbackResponseDTO feedbackResponse);
-        bool AddFeedbackQuestion(FeedbackQuestionDTO question);
+        IEnumerable<TopicFeedbackQuestionNoDTO> GetAllFeedbackQuestions();
+        TopicFeedbackQuestionNoDTO GetFeedbackQuestionById(Guid id);
+        void AddFeedbackResponse(TopicFeedbackResponseDTO feedbackResponse);
+        bool AddFeedbackQuestion(TopicFeedbackQuestionDTO question, List<FeedbackOptionDTO> options);
+        bool DeleteFeedbackQuestion(Guid id);
+        bool UpdateFeedbackQuestion(Guid id, TopicFeedbackQuestionDTO question, List<FeedbackOptionDTO> options);
         // Add other methods as needed
     }
 }

@@ -17,14 +17,13 @@ namespace LXP.Api.Controllers
             _service = service;
         }
 
-
         [HttpPost("question")]
-        public IActionResult AddFeedbackQuestion(FeedbackQuestionDTO question)
+        public IActionResult AddFeedbackQuestion(TopicFeedbackQuestionDTO question)
         {
             if (question == null)
                 return BadRequest("Question object is null");
 
-            var result = _service.AddFeedbackQuestion(question);
+            var result = _service.AddFeedbackQuestion(question, question.Options);
 
             if (result)
                 return Ok("Question added successfully");
@@ -50,12 +49,36 @@ namespace LXP.Api.Controllers
         }
 
         [HttpPost("response")]
-        public IActionResult SubmitFeedbackResponse(FeedbackResponseDTO feedbackResponse)
+        public IActionResult SubmitFeedbackResponse(TopicFeedbackResponseDTO feedbackResponse)
         {
             _service.SubmitFeedbackResponse(feedbackResponse);
             return Ok();
         }
 
-        // Implement other controller actions as needed
+        [HttpPut("{id}")]
+        public IActionResult UpdateFeedbackQuestion(Guid id, TopicFeedbackQuestionDTO question)
+        {
+            if (question == null)
+                return BadRequest("Question object is null");
+
+            var result = _service.UpdateFeedbackQuestion(id, question, question.Options);
+
+            if (result)
+                return Ok("Question updated successfully");
+
+            return NotFound("Question not found");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteFeedbackQuestion(Guid id)
+        {
+            var result = _service.DeleteFeedbackQuestion(id);
+
+            if (result)
+                return Ok("Question deleted successfully");
+
+            return NotFound("Question not found");
+        }
+
     }
 }

@@ -14,38 +14,50 @@ namespace LXP.Core.Services
             _repository = repository;
         }
 
-        public IEnumerable<FeedbackQuestionDTO> GetAllFeedbackQuestions()
+        public IEnumerable<TopicFeedbackQuestionNoDTO> GetAllFeedbackQuestions()
         {
             return _repository.GetAllFeedbackQuestions();
         }
 
-        public FeedbackQuestionDTO GetFeedbackQuestionById(Guid id)
+        public TopicFeedbackQuestionNoDTO GetFeedbackQuestionById(Guid id)
         {
             return _repository.GetFeedbackQuestionById(id);
         }
 
-        public void SubmitFeedbackResponse(FeedbackResponseDTO feedbackResponse)
+        public void SubmitFeedbackResponse(TopicFeedbackResponseDTO feedbackResponse)
         {
             _repository.AddFeedbackResponse(feedbackResponse);
         }
 
-        public bool AddFeedbackQuestion(FeedbackQuestionDTO question)
+        public bool AddFeedbackQuestion(TopicFeedbackQuestionDTO question, List<FeedbackOptionDTO> options)
         {
             // Validation and business logic here
-            // Example:
+            // ...
+
+            // Call the repository method
+            return _repository.AddFeedbackQuestion(question, options);
+        }
+
+        public bool UpdateFeedbackQuestion(Guid id, TopicFeedbackQuestionDTO question, List<FeedbackOptionDTO> options)
+        {
+            // Validation and business logic here
             if (question == null)
                 return false;
 
             if (string.IsNullOrEmpty(question.Question))
                 return false;
 
-            //if (question.QuestionType == "MCQ" && (question.Options == null || question.Options.Count != 4))
-            //    return false;
+            if (question.QuestionType == "MCQ" && (question.Options == null || question.Options.Count < 2 || question.Options.Count > 5))
+                return false;
 
-            // Map DTO to entity and save to database
-            return _repository.AddFeedbackQuestion(question);
+            return _repository.UpdateFeedbackQuestion(id, question,options);
         }
 
-        // Implement other IService methods
+        public bool DeleteFeedbackQuestion(Guid id)
+        {
+            return _repository.DeleteFeedbackQuestion(id);
+        }
+
+        // Implement other service methods
     }
 }

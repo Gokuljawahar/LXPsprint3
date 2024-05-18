@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace LXP.Common.DTO
 {
-    public class FeedbackQuestionDTO
+    public class TopicFeedbackQuestionNoDTO
     {
-        public Guid Id { get; set; }
+        public Guid TopicFeedbackId { get; set; }
         public Guid TopicId { get; set; }
         public int QuestionNo { get; set; }
         public string Question { get; set; }
         public string QuestionType { get; set; }
-        public List<string> Options { get; set; }
-        // Add any other properties you need
+        public List<FeedbackOptionDTO> Options { get; set; }
     }
 }

@@ -8,7 +8,6 @@ namespace LXP.Common.DTO
 {
     public class FeedbackOptionDTO
     {
-        public Guid Id { get; set; }
         public string OptionText { get; set; }
         // Add any other properties you need
     }

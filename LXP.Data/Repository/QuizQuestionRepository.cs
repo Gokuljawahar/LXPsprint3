@@ -110,11 +110,7 @@ namespace LXP.Data.Repository
         }
 
 
-        public bool UpdateQuestion(
-    Guid quizQuestionId,
-    QuizQuestionDto quizQuestionDto,
-    List<QuestionOptionDto> options
-         )
+        public bool UpdateQuestion(Guid quizQuestionId,QuizQuestionDto quizQuestionDto,List<QuestionOptionDto> options)
         {
             try
             {
