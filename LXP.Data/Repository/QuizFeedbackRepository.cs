@@ -75,6 +75,7 @@ namespace LXP.Data.Repository
             {
                 var questionsToUpdate = _dbContext.Quizfeedbackquestions
                     .Where(q => q.QuizId == deletedQuestion.QuizId && q.QuestionNo > deletedQuestion.QuestionNo)
+                    .OrderBy(q => q.QuestionNo)
                     .ToList();
                 foreach (var question in questionsToUpdate)
                 {
@@ -194,18 +195,91 @@ namespace LXP.Data.Repository
             return false;
         }
 
+
         public bool DeleteFeedbackQuestion(Guid quizFeedbackQuestionId)
         {
-            var existingQuestion = _dbContext.Quizfeedbackquestions.FirstOrDefault(q => q.QuizFeedbackQuestionId == quizFeedbackQuestionId);
-            if (existingQuestion != null)
+            using var transaction = _dbContext.Database.BeginTransaction();
+            try
             {
-                _dbContext.Quizfeedbackquestions.Remove(existingQuestion);
-                _dbContext.SaveChanges();
-                DecrementFeedbackQuestionNos(quizFeedbackQuestionId);
-                return true;
+                var existingQuestion = _dbContext.Quizfeedbackquestions.FirstOrDefault(q => q.QuizFeedbackQuestionId == quizFeedbackQuestionId);
+                if (existingQuestion != null)
+                {
+                   
+                    var relatedOptions = _dbContext.Feedbackquestionsoptions
+                                                    .Where(o => o.QuizFeedbackQuestionId == quizFeedbackQuestionId)
+                                                    .ToList();
+
+                    if (relatedOptions.Any())
+                    {
+                        _dbContext.Feedbackquestionsoptions.RemoveRange(relatedOptions);
+                    }
+
+                    _dbContext.Quizfeedbackquestions.Remove(existingQuestion);
+                    _dbContext.SaveChanges();
+
+                 
+                    DecrementFeedbackQuestionNos(quizFeedbackQuestionId);
+
+                    transaction.Commit();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw;
             }
             return false;
         }
+
+
+        //public bool DeleteFeedbackQuestion(Guid quizFeedbackQuestionId)
+        //{
+        //    using var transaction = _dbContext.Database.BeginTransaction();
+        //    try
+        //    {
+        //        var existingQuestion = _dbContext.Quizfeedbackquestions.FirstOrDefault(q => q.QuizFeedbackQuestionId == quizFeedbackQuestionId);
+        //        if (existingQuestion != null)
+        //        {
+        //            // Find related FeedbackQuestionsOptions and delete them
+        //            var relatedOptions = _dbContext.Feedbackquestionsoptions
+        //                                            .Where(o => o.QuizFeedbackQuestionId == quizFeedbackQuestionId)
+        //                                            .ToList();
+
+        //            if (relatedOptions.Any())
+        //            {
+        //                _dbContext.Feedbackquestionsoptions.RemoveRange(relatedOptions);
+        //            }
+
+        //            _dbContext.Quizfeedbackquestions.Remove(existingQuestion);
+        //            _dbContext.SaveChanges();
+        //            DecrementFeedbackQuestionNos(quizFeedbackQuestionId);
+        //            transaction.Commit();
+        //            return true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        transaction.Rollback();
+        //        // Log the exception (ex) here if necessary
+        //        throw;
+        //    }
+        //    return false;
+        //}
+
+
+        //public bool DeleteFeedbackQuestion(Guid quizFeedbackQuestionId)
+        //{
+        //    var existingQuestion = _dbContext.Quizfeedbackquestions.FirstOrDefault(q => q.QuizFeedbackQuestionId == quizFeedbackQuestionId);
+        //    if (existingQuestion != null)
+        //    {
+        //        _dbContext.Quizfeedbackquestions.Remove(existingQuestion);
+        //        _dbContext.SaveChanges();
+        //        DecrementFeedbackQuestionNos(quizFeedbackQuestionId);
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }
 
