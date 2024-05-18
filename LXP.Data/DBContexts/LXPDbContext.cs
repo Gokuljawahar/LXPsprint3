@@ -73,7 +73,7 @@ public partial class LXPDbContext : DbContext
 
             entity.ToTable("course");
 
-            entity.HasIndex(e => e.CategoryId, "IX_course_catagory_id");
+            entity.HasIndex(e => e.CategoryId, "IX_course_category_id");
 
             entity.HasIndex(e => e.LevelId, "IX_course_level_id");
 
@@ -106,9 +106,7 @@ public partial class LXPDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("title");
 
-            entity.HasOne(d => d.Category).WithMany(p => p.Courses)
-                .HasForeignKey(d => d.CategoryId)
-                .HasConstraintName("FK_course_course_category_catagory_id");
+            entity.HasOne(d => d.Category).WithMany(p => p.Courses).HasForeignKey(d => d.CategoryId);
 
             entity.HasOne(d => d.Level).WithMany(p => p.Courses).HasForeignKey(d => d.LevelId);
         });
