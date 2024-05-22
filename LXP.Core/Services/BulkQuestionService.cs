@@ -17,7 +17,7 @@ namespace LXP.Core.Services
             _bulkQuestionRepository = bulkQuestionRepository;
         }
 
-        public object ImportQuizData(IFormFile file)
+        public object ImportQuizData(IFormFile file, Guid quizId)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace LXP.Core.Services
                             // Add question to the repository
                             QuizQuestion questionEntity = new QuizQuestion
                             {
-                                QuizId = Guid.Parse("87a846b9-fa2b-4736-b8f5-8789dbc49933"),
+                                QuizId = quizId,
                                 QuestionNo = quizQuestion.QuestionNumber,
                                 QuestionType = quizQuestion.QuestionType,
                                 Question = quizQuestion.Question,

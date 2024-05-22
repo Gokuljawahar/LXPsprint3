@@ -4,6 +4,6 @@ namespace LXP.Core.IServices
 {
     public interface IBulkQuestionService
     {
-        object ImportQuizData(IFormFile file);
+        object ImportQuizData(IFormFile file, Guid quizId);
     }
 }

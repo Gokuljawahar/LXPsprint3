@@ -17,6 +17,7 @@ namespace LXP.Data.IRepository
         List<QuestionOptionDto> GetQuestionOptionsById(Guid quizQuestionId);
         QuizQuestionNoDto GetQuestionById(Guid quizQuestionId);
         bool ValidateOptionsByQuestionType(string questionType, List<QuestionOptionDto> options);
+        List<QuizQuestionNoDto> GetAllQuestionsByQuizId(Guid quizId);
     }
 }
 ////using System;

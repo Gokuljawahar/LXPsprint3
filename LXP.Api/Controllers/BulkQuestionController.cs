@@ -19,11 +19,11 @@ namespace LXP.Api.controllers
         }
 
         [HttpPost("ImportQuizData")]
-        public IActionResult ImportQuizData(IFormFile file)
-        {
+        public IActionResult ImportQuizData(IFormFile file, Guid quizId)
+        {   
             try
             {
-                var result = _excelService.ImportQuizData(file);
+                var result = _excelService.ImportQuizData(file,quizId);
                 return Ok(result);
             }
             catch (Exception ex)

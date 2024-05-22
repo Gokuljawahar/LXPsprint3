@@ -40,6 +40,11 @@ namespace LXP.Core.Services
         {
             return _quizQuestionRepository.GetQuestionById(quizQuestionId);
         }
+
+        public List<QuizQuestionNoDto> GetAllQuestionsByQuizId(Guid quizId)
+        {
+            return _quizQuestionRepository.GetAllQuestionsByQuizId(quizId);
+        }
     }
 }
 

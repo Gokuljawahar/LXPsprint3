@@ -16,6 +16,7 @@ namespace LXP.Data.IRepository
         void CreateQuiz(QuizDto quiz);
         void UpdateQuiz(QuizDto quiz);
         void DeleteQuiz(Guid quizId);
+        Guid? GetQuizIdByTopicId(Guid topicId);
 
 
     }

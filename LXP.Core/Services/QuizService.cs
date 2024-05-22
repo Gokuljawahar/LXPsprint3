@@ -47,20 +47,13 @@ namespace LXP.Core.Services
             return _quizRepository.GetQuizById(quizId);
         }
 
+        public Guid? GetQuizIdByTopicId(Guid topicId)
+        {
+            return _quizRepository.GetQuizIdByTopicId(topicId);
+        }
+
 
     }
 }
 
 
-
-//public void CreateQuiz(Guid quizId, Guid courseId, Guid topicId, string nameOfQuiz, int duration, int passMark, string createdBy, DateTime createdAt)
-//{
-//    _quizRepository.CreateQuiz(quizId, courseId, topicId, nameOfQuiz, duration, passMark, createdBy, createdAt);
-//}
-
-
-
-//public void CreateQuiz(Guid quizId, Guid courseId, Guid topicId, string nameOfQuiz, int duration, int passMark, string createdBy, DateTime createdAt)
-//{
-//    _quizRepository.CreateQuiz(quizId, courseId, topicId, nameOfQuiz, duration, passMark, createdBy, createdAt);
-//}

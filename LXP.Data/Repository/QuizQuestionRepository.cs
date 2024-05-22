@@ -432,6 +432,46 @@ namespace LXP.Data.Repository
             var distinctOptions = options.Select(o => o.Option.ToLower()).Distinct().Count();
             return distinctOptions == options.Count;
         }
+
+        public List<QuizQuestionNoDto> GetAllQuestionsByQuizId(Guid quizId)
+        {
+            try
+            {
+                return _LXPDbContext.QuizQuestions
+                    .Where(q => q.QuizId == quizId)
+                    .Select(
+                        q =>
+                            new QuizQuestionNoDto
+                            {
+                                QuizId = q.QuizId,
+                                QuizQuestionId = q.QuizQuestionId,
+                                Question = q.Question,
+                                QuestionType = q.QuestionType,
+                                QuestionNo = q.QuestionNo,
+
+                                Options = _LXPDbContext.QuestionOptions // Assuming the DbSet name is QuestionOptions
+                                    .Where(o => o.QuizQuestionId == q.QuizQuestionId)
+                                    .Select(
+                                        o =>
+                                            new QuestionOptionDto
+                                            {
+                                                Option = o.Option,
+                                                IsCorrect = o.IsCorrect
+                                            }
+                                    )
+                                    .ToList()
+                            }
+                    )
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException(
+                    "An error occurred while retrieving all quiz questions by quiz ID.",
+                    ex
+                );
+            }
+        }
     }
 }
 

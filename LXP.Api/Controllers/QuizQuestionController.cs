@@ -55,6 +55,13 @@ namespace LXP.Api.Controllers
             }
             return Ok(result);
         }
+
+        [HttpGet("GetAllQuestionsByQuizId")]
+        public IActionResult GetAllQuestionsByQuizId(Guid quizId)
+        {
+            var result = _quizQuestionService.GetAllQuestionsByQuizId(quizId);
+            return Ok(result);
+        }
     }
 }
 ////////using Microsoft.AspNetCore.Http;

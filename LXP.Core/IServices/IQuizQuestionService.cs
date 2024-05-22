@@ -11,6 +11,7 @@ namespace LXP.Core.IServices
         bool DeleteQuestion(Guid quizQuestionId);
         List<QuizQuestionNoDto> GetAllQuestions();
         QuizQuestionNoDto GetQuestionById(Guid quizQuestionId);
+        List<QuizQuestionNoDto> GetAllQuestionsByQuizId(Guid quizId);
     }
 }
 
