@@ -43,6 +43,8 @@ builder.Services.AddScoped<IBulkQuestionRepository, BulkQuestionRepository>();
 builder.Services.AddScoped<IBulkQuestionService, BulkQuestionService>();
 builder.Services.AddScoped<ITopicFeedbackRepository, TopicFeedbackRepository>();
 builder.Services.AddScoped<ITopicFeedbackService, TopicFeedbackService>();
+builder.Services.AddScoped<IQuizFeedbackService, QuizFeedbackService>();
+builder.Services.AddScoped<IQuizFeedbackRepository, QuizFeedbackRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
